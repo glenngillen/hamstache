@@ -1,14 +1,81 @@
 # Hamstache
 
+Hamstache joins the crazy awesome power of the Haml templating language
+with Mustache to keep your views clean *and* free of logic.
+
 ## Usage
+
+Add Hamstache to your Gemfile:
+
+    gem "hamstache"
+
+And run `bundle install` to ensure it's added to your apps dependencies.
+Now you can create your view using a mix of Haml and Mustache syntax. For
+example to serve a request to `WelcomeController#index` we'd have the
+following in `app/views/welcome/index.html.hamstache`:
+
+
+    %h1 Welcome!
+    %p Here comes a list:
+    %ul
+      {{#items}}
+        %li {{ name }}
+      {{/ items}}
+
+Next you need to define your Hamstache template, for this example the template
+is expected to be found at `app/hamstaches/demo/index.rb` and could look like
+the following:
+
+
+    class Welcome::Index < Hamstache::Template
+      def items
+        [{ :name => "Item 1"},
+        { :name => "Item 2"},
+        { :name => "Item 3"}]
+      end
+    end
+
+Now a request to `WelcomeController#index` would result in the following HTML
+output:
+
+    <h1>Welcome!</h1>
+    <p>Here comes a list:</p>
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+
+For more details on what is possible, read up on the API docs for HAML and
+Mustache respectively.
 
 ## Why would I want to use this?
 
+Because keeping your views free of conditional logic makes things much
+easier to maintain, but I don't see why it should come at the expense
+of having to use ERB.
+
 ## Compatibility
+
+Only tested with Rails 3.x and MRI Ruby 1.9.2 so far.
 
 ## Contributions
 
+* Glenn Gillen
+
 ## Status
+
+In production use and still under development.
+
+## Bugs, Feature Requests, etc.
+
+If you think you've found a bug or have a feature you'd like to contribute
+here are the ways to let me know, in order of liklihood for a speedy
+resolution:
+
+* Fork the repo, add a test, implement the feature, send me a pull request
+* Fork the repo, add a failing test, send me a pull request
+* Create an issue on Github.
 
 ## License
 
