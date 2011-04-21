@@ -1,0 +1,5 @@
+%h1 A heading
+%ul
+  {{#items}}
+    %li {{ name }}
+  {{/ items}}

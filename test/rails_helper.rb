@@ -1,0 +1,6 @@
+require 'rails'
+require 'action_controller/railtie'
+require 'rails/test_unit/railtie'
+require 'rails/test_help'
+require 'action_controller'
+require 'fixtures/rails-app/app'

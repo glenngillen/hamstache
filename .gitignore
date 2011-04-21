@@ -1,3 +1,4 @@
 pkg
 .bundle
 Gemfile.lock
+test/fixtures/rails-app/log
