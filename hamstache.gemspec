@@ -16,4 +16,7 @@ Gem::Specification.new do |s|
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 2
   end
+
+  s.add_dependency("haml", "~> 4.0.2")
+  s.add_dependency("mustache", "~> 0.99.4")
 end

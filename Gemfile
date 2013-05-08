@@ -1,7 +1,5 @@
-source :rubygems
+source "https://rubygems.org"
 gem "rake"
 gem "shoulda"
 gem "ruby-debug19"
-gem "haml"
-gem "mustache"
-gem "rails"
+gem "rails", "~> 3.0.20"
