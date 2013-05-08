@@ -1,17 +1,22 @@
+require 'haml'
 module Haml
-  module Precompiler
+  class Parser
     alias_method :process_line_without_mustache, :process_line
 
     def process_line(text, index)
-      if text =~ /^\{\{.*\}\}$/
-        @index = index + 1
-        push_merged_text(text, 1, true)
-        concat_merged_text("\n")
-        return
+      if text =~ /^\{\{.*\}\}$/        
+        return push mustache(text)
       else
         process_line_without_mustache(text, index)
       end
     end
+    
+    def mustache(line)    
+      ParseNode.new(:script, @index, :text => %Q{\"#{line}\"}, 
+        :escape_html => true,
+        :self_closing => true,
+        :dont_push_end => true)
+
+    end
   end
 end
-
